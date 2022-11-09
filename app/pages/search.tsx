@@ -4,10 +4,6 @@ import TrailerCard from "../components/trailer-card";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-interface HomeProps {
-  trailers: Trailer[]
-}
-
 const Search = () => {
   const [trailers, setTrailers] = useState<Trailer[]>([])
 

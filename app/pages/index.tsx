@@ -1,5 +1,4 @@
 import { Trailer } from "../interfaces/trailer.interface";
-import { Directus } from "@directus/sdk";
 import TrailerPage  from "../components/trailer-page";
 import { TrailerApi } from "../api/trailer-api";
 import Api from "../drivers/Api";
