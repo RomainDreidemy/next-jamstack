@@ -26,7 +26,7 @@ const TrailerCard = ( { trailer }: TrailerCardProps) => {
             {trailer.synopsis.substring(0, 100)}...
           </div>
 
-          <Link href={`trailers/${trailer.id}`} className="button is-primary">Voir la fiche</Link>
+          <Link href={`/trailers/${trailer.id}`} className="button is-primary">Voir la fiche</Link>
         </div>
       </div>
     </div>

@@ -20,7 +20,7 @@ const useComments = (trailerId: number) => {
     fetchComment()
   }, [trailerId]);
 
-  const createComment = useCallback(async (params: CommentCreate, onSuccess: () => void): Promise<void> => {
+  const createComment = useCallback(async (params: CommentCreate): Promise<void> => {
     const directus = new Directus('http://localhost:8052');
     await directus.items('comments').createOne({trailer: trailerId, ...params})
     await fetchComment()

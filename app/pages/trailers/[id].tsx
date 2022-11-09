@@ -12,9 +12,7 @@ const Trailer = ({ trailer }: TrailerProps) => {
   const { comments, createComment } = useComments(trailer.id)
 
   const handleCreateComment = async (params: CommentCreate) => {
-    await createComment(params, () => {
-
-    })
+    await createComment(params)
   }
 
   return (

@@ -1,32 +1,32 @@
-import styles from '../styles/Home.module.css'
 import { Trailer } from "../interfaces/trailer.interface";
 import { Directus } from "@directus/sdk";
-import TrailerCard from "../components/trailer-card";
-import Navabar from "../components/navabar";
+import TrailerPage  from "../components/trailer-page";
 
 interface HomeProps {
   trailers: Trailer[]
+  pageCount: number
 }
 
-const Home = ({ trailers }: HomeProps) => {
+const Home = ({ trailers, pageCount }: HomeProps) => {
   return (
-    <div className="container mt-5">
-      <h1 className="title">Liste des bandes annonces</h1>
-
-      <div className="columns is-mobile is-multiline">
-        {trailers.map((trailer) => (<TrailerCard key={trailer.id} trailer={trailer} />))}
-      </div>
-    </div>
+    <TrailerPage trailers={trailers} pageCount={pageCount} page={1} />
   )
 }
 
+
+
 export async function getStaticProps() {
+  const limit = 12
+
   const directus = new Directus('http://directus:8055');
 
-  const response = await directus.items('trailers').readByQuery()
+  const response = await directus.items('trailers').readByQuery({ offset: 1, limit, sort: ['-date_created'], meta: ['total_count'] })
+
+  const totalCount: number = response.meta?.total_count || 1
+  const pageCount: number = Math.round((totalCount + limit) / limit)
 
   return {
-    props: { trailers: response.data },
+    props: { trailers: response.data, pageCount: pageCount },
   };
 }
 
