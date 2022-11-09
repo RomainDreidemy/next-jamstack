@@ -27,7 +27,7 @@ const Search = () => {
     <div className="container mt-5">
       <h1 className="title">Liste des bandes annonces rechechés</h1>
 
-      <div className="columns is-mobile">
+      <div className="columns is-mobile is-multiline">
         {trailers.map((trailer) => (<TrailerCard key={trailer.id} trailer={trailer} />))}
       </div>
     </div>
