@@ -5,6 +5,7 @@ export interface Trailer {
   url: string
   image: string
   rating: number
+  jean: number
 }
 
 export interface TrailerResponse {

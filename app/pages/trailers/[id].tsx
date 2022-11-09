@@ -4,6 +4,7 @@ import useComments from "../../hooks/useComments";
 import CommentForm from "../../components/comment-form";
 import { CommentCreate } from "../../interfaces/comment.interface";
 import Comment from "../../components/comment";
+import useVisit from "../../hooks/useVisit";
 
 interface TrailerProps {
   trailer: Trailer
@@ -11,6 +12,7 @@ interface TrailerProps {
 
 const Trailer = ({ trailer }: TrailerProps) => {
   const { comments, createComment } = useComments(trailer.id)
+  const { visit } = useVisit(trailer)
 
   const handleCreateComment = async (params: CommentCreate) => {
     await createComment(params)
@@ -19,6 +21,7 @@ const Trailer = ({ trailer }: TrailerProps) => {
   return (
     <div className="container mt-5 is-max-desktop">
       <h1 className="title">{trailer.title}</h1>
+      <p className="is-italic mb-5">{`La page a été vu ${visit} fois`}</p>
       <p>{trailer.synopsis}</p>
 
       <h2 className="subtitle mt-5">Bande annonce</h2>
