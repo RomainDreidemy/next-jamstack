@@ -19,7 +19,7 @@ const TrailerPage = ({ trailers, pageCount, page }: HomeProps) => {
 
       <nav className="pagination" role="navigation" aria-label="pagination">
         <ul className="pagination-list">
-          {Array.apply(null, {length: pageCount}).map((value, index) => (
+          {(new Array(pageCount).fill(null)).map((value, index) => (
             <li key={index}>
               <Link href={`/page/${index + 1}`} className={`pagination-link ${((!page && index + 1 === 1) || index + 1 === +page) && 'is-current'}`} aria-label={`Page ${index + 1}`} aria-current="page">{index + 1}</Link>
             </li>

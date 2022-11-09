@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Directus } from "@directus/sdk";
 import { Comment, CommentCreate } from "../interfaces/comment.interface";
+import Api from "../drivers/Api";
+import { CommentApi } from "../api/comment-api";
 
 const useComments = (trailerId: number) => {
   const [isLoading, setIsLoading] = useState(true)
@@ -8,10 +9,7 @@ const useComments = (trailerId: number) => {
 
   const fetchComment = useCallback(async () => {
     setIsLoading(true)
-    const directus = new Directus('http://localhost:8052');
-    const response = await directus.items('comments').readByQuery({ filter: { trailer: trailerId } })
-
-    console.log(response.data)
+    const response = await CommentApi.byTrailer(Api.clientSideDriver(), trailerId)
     setComments(response.data)
     setIsLoading(false)
   }, [trailerId])
@@ -21,8 +19,7 @@ const useComments = (trailerId: number) => {
   }, [trailerId]);
 
   const createComment = useCallback(async (params: CommentCreate): Promise<void> => {
-    const directus = new Directus('http://localhost:8052');
-    await directus.items('comments').createOne({trailer: trailerId, ...params})
+    await CommentApi.create(Api.clientSideDriver(), {trailer: trailerId, ...params})
     await fetchComment()
   },[fetchComment]);
 

@@ -9,5 +9,6 @@ export interface Comment {
 export interface CommentCreate {
   pseudo: string
   body: string
-  rating: number
+  rating: number,
+  trailer?: number
 }

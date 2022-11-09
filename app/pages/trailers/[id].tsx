@@ -3,6 +3,7 @@ import { Trailer } from "../../interfaces/trailer.interface";
 import useComments from "../../hooks/useComments";
 import CommentForm from "../../components/comment-form";
 import { CommentCreate } from "../../interfaces/comment.interface";
+import Comment from "../../components/comment";
 
 interface TrailerProps {
   trailer: Trailer
@@ -30,15 +31,7 @@ const Trailer = ({ trailer }: TrailerProps) => {
 
       <CommentForm onSubmit={handleCreateComment} />
 
-      <div>
-        {comments.map((comment) => (
-          <div key={comment.id}>
-            <div>{comment.pseudo}</div>
-            <div>{comment.body}</div>
-            <div>{comment.rating}/5</div>
-          </div>
-        ))}
-      </div>
+      {comments.map((comment) => <Comment comment={comment} />)}
     </div>
   )
 }
