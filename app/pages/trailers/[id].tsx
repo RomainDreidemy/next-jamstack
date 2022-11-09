@@ -11,7 +11,7 @@ interface TrailerProps {
 }
 
 const Trailer = ({ trailer }: TrailerProps) => {
-  const { comments, createComment } = useComments(trailer.id)
+  const { comments, commentRatingAverage, createComment } = useComments(trailer.id)
   const { visit } = useVisit(trailer)
 
   const handleCreateComment = async (params: CommentCreate) => {
@@ -31,6 +31,7 @@ const Trailer = ({ trailer }: TrailerProps) => {
               allowFullScreen></iframe>
 
       <h2 className="subtitle mt-5">Commentaires</h2>
+      <p>moyenne des internautes: {Math.round(commentRatingAverage)}/5</p>
 
       <CommentForm onSubmit={handleCreateComment} />
 

@@ -14,7 +14,9 @@ const Search = () => {
   useEffect(() => {
     (async () => {
       const directus = new Directus('http://localhost:8052');
+      // @ts-ignore
       const response = await directus.items('trailers').readByQuery({ search: q })
+      // @ts-ignore
       setTrailers(response.data)
     })()
   }, [q])

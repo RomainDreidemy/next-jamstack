@@ -6,11 +6,16 @@ import { CommentApi } from "../api/comment-api";
 const useComments = (trailerId: number) => {
   const [isLoading, setIsLoading] = useState(true)
   const [comments, setComments] = useState<Comment[]>([])
+  const [commentRatingAverage, setCommentRatingAverage] = useState<number>(3)
 
   const fetchComment = useCallback(async () => {
     setIsLoading(true)
     const response = await CommentApi.byTrailer(Api.clientSideDriver(), trailerId)
+    const responseAvg = await CommentApi.avgByTrailer(Api.clientSideDriver(), trailerId)
+    // @ts-ignore
     setComments(response.data)
+    // @ts-ignore
+    setCommentRatingAverage(responseAvg?.data[0]?.avg?.rating || 3)
     setIsLoading(false)
   }, [trailerId])
 
@@ -24,7 +29,7 @@ const useComments = (trailerId: number) => {
   },[fetchComment]);
 
 
-  return { comments, createComment, isLoading }
+  return { comments, commentRatingAverage, createComment, isLoading }
 };
 
 export default useComments;

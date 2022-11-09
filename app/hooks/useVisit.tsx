@@ -9,7 +9,9 @@ const useVisit = (trailer: Trailer) => {
   useEffect(() => {
     (async () => {
       const data = await TrailerApi.read(Api.clientSideDriver(), trailer.id)
+      // @ts-ignore
       TrailerApi.update(Api.clientSideDriver(), trailer.id, { jean: data.jean + 1 })
+      // @ts-ignore
       setVisit(data.jean + 1)
     })()
   }, [trailer]);
