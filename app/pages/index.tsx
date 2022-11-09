@@ -2,6 +2,7 @@ import styles from '../styles/Home.module.css'
 import { Trailer } from "../interfaces/trailer.interface";
 import { Directus } from "@directus/sdk";
 import TrailerCard from "../components/trailer-card";
+import Navabar from "../components/navabar";
 
 interface HomeProps {
   trailers: Trailer[]
