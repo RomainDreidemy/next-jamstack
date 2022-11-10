@@ -15,7 +15,7 @@ const useComments = (trailerId: number) => {
     // @ts-ignore
     setComments(response.data)
     // @ts-ignore
-    setCommentRatingAverage(responseAvg?.data[0]?.avg?.rating || 3)
+    setCommentRatingAverage(Math.round(responseAvg?.data[0]?.avg?.rating || 3))
     setIsLoading(false)
   }, [trailerId])
 

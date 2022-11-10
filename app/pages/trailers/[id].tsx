@@ -35,7 +35,7 @@ const Trailer = ({ trailer }: TrailerProps) => {
 
       <CommentForm onSubmit={handleCreateComment} />
 
-      {comments.map((comment) => <Comment comment={comment} />)}
+      {comments.map((comment) => <Comment key={comment.id} comment={comment} />)}
     </div>
   )
 }

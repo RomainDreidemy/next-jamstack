@@ -40,6 +40,7 @@ services:
       # Always make sure your volumes matches the storage root when using
       # local driver
       - ./uploads:/directus/uploads
+      - ./endpoints:/directus/extensions/endpoints
       # Make sure to also mount the volume when using SQLite
       # - ./database:/directus/database
       # If you want to load extensions from the host

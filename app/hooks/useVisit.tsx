@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Trailer } from "../interfaces/trailer.interface";
-import { TrailerApi } from "../api/trailer-api";
-import Api from "../drivers/Api";
 
 const useVisit = (trailer: Trailer) => {
   const [ visit, setVisit ] = useState(trailer.jean)
 
   useEffect(() => {
     (async () => {
-      const data = await TrailerApi.read(Api.clientSideDriver(), trailer.id)
+      let response = await fetch(`http://localhost:8052/visit/${trailer.id}`)
+      response = await response.json()
       // @ts-ignore
-      TrailerApi.update(Api.clientSideDriver(), trailer.id, { jean: data.jean + 1 })
-      // @ts-ignore
-      setVisit(data.jean + 1)
+      setVisit(response.visit)
     })()
   }, [trailer]);
 

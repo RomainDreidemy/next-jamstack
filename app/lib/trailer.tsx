@@ -19,6 +19,7 @@ export async function generateTrailerPagesPaths() {
 
   const pageCount = Math.ceil((response.meta?.total_count || 1) / 12)
 
+  // @ts-ignore
   return Array.apply(null, {length: pageCount}).map((value, index) => {
     return `/page/${index + 1}`
   })
